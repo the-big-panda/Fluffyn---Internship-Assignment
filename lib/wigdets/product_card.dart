@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluffyn/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffyn/models/product_model.dart';
@@ -15,12 +17,11 @@ class ProductCard extends StatelessWidget {
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        leading: Image.network(
-          product.image,
-          width: 60,
-          height: 60,
-          fit: BoxFit.cover,
-        ),
+        leading: product.image.startsWith('http')
+            ? Image.network(product.image,
+                width: 60, height: 60, fit: BoxFit.cover)
+            : Image.file(File(product.image),
+                width: 60, height: 60, fit: BoxFit.cover),
         title: Text(product.title),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +42,8 @@ class ProductCard extends StatelessWidget {
         ),
         trailing: const Icon(Icons.shopping_cart),
         onTap: () {
-          // Optional: Navigate to detail or add to cart 
-         Get.to(() => ProductDetailPage(product: product));
+          // Optional: Navigate to detail or add to cart
+          Get.to(() => ProductDetailPage(product: product));
         },
       ),
     );
