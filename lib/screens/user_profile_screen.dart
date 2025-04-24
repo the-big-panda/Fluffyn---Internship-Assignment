@@ -1,3 +1,4 @@
+import 'package:fluffyn/screens/cartpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,7 +14,6 @@ class UserProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -262,6 +262,15 @@ class UserProfileScreen extends StatelessWidget {
                           onTap: () {
                             Get.snackbar(
                                 "Support", "Help & Support coming soon");
+                          },
+                        ),
+                        Divider(
+                            height: 1, thickness: 1, indent: 70, endIndent: 20),
+                        _buildOptionItem(
+                          title: "My Cart",
+                          icon: Icons.help_outline,
+                          onTap: () {
+                            Get.to(CartPage());
                           },
                         ),
                       ],

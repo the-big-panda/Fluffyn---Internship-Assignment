@@ -1,8 +1,8 @@
+import 'package:fluffyn/controllers/cartcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffyn/models/product_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
@@ -238,38 +238,30 @@ class ProductDetailPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: Container(
-        height: 55,
-        child: FloatingActionButton.extended(
-          onPressed: () {
-            // Add to cart functionality
-            Get.snackbar(
-              "Added to Cart",
-              "${product.title} has been added to your cart",
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Color.fromRGBO(255, 86, 86, 0.8),
-              colorText: Colors.white,
-              margin: EdgeInsets.all(16),
-              borderRadius: 10,
-              duration: Duration(seconds: 2),
-            );
-          },
-          backgroundColor: Color.fromRGBO(255, 86, 86, 0.8),
-          foregroundColor: Colors.white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          icon: const Icon(Icons.shopping_cart),
-          label: Text(
-            'ADD TO CART',
-            style: GoogleFonts.poppins(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1,
+          height: 55,
+          child: FloatingActionButton.extended(
+            onPressed: () {
+              // Get the CartController instance
+              final CartController cartController = Get.find<CartController>();
+              // Add the product to cart
+              cartController.addItem(product);
+            },
+            backgroundColor: Color.fromRGBO(255, 86, 86, 0.8),
+            foregroundColor: Colors.white,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
             ),
-          ),
-        ),
-      ),
+            icon: const Icon(Icons.shopping_cart),
+            label: Text(
+              'ADD TO CART',
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1,
+              ),
+            ),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }

@@ -36,10 +36,8 @@ class ProductController extends GetxController {
   Future<void> fetchProductList() async {
     try {
       var products = await ApiService.fetchProducts();
-      if (products != null) {
-        productList.assignAll(products);
-      }
-    } catch (e) {
+      productList.assignAll(products);
+        } catch (e) {
       Get.snackbar('Error', e.toString());
     }
   }

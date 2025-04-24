@@ -89,12 +89,12 @@ class _ProductListPageState extends State<ProductListPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(
+                    const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
                         Color.fromRGBO(255, 86, 86, 0.8),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       "Loading products...",
                       style: GoogleFonts.poppins(
