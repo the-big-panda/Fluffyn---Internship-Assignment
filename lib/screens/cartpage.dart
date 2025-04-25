@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluffyn/controllers/cartcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -360,10 +362,9 @@ class CartItemCard extends StatelessWidget {
                       bottomLeft: Radius.circular(20),
                     ),
                   ),
-                  child: Image.network(
-                    cartItem.product.image,
-                    fit: BoxFit.contain,
-                  ),
+                  child: cartItem.product.image.startsWith('http')
+                      ? Image.network(cartItem.product.image)
+                      : Image.file(File(cartItem.product.image)),
                 ),
               ),
 

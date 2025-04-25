@@ -270,7 +270,7 @@ class UserProfileScreen extends StatelessWidget {
                           title: "My Cart",
                           icon: Icons.help_outline,
                           onTap: () {
-                            Get.to(CartPage());
+                            Get.to(() => CartPage());
                           },
                         ),
                       ],

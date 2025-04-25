@@ -151,18 +151,18 @@ class _ProductListPageState extends State<ProductListPage> {
           }),
 
           // Section Title
-          Positioned(
-            top: 15,
-            left: 24,
-            child: Text(
-              "All Products",
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 15,
+          //   left: 24,
+          //   child: Text(
+          //     "All Products",
+          //     style: GoogleFonts.poppins(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.w600,
+          //       color: Colors.black87,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
       floatingActionButton: Container(

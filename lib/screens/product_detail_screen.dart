@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluffyn/controllers/cartcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffyn/models/product_model.dart';
@@ -56,6 +58,7 @@ class ProductDetailPage extends StatelessWidget {
           Positioned(
             top: 15,
             left: 24,
+            right: 24,
             child: Text(
               product.title,
               style: GoogleFonts.poppins(
@@ -63,7 +66,7 @@ class ProductDetailPage extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,
               ),
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -72,7 +75,7 @@ class ProductDetailPage extends StatelessWidget {
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 50, 20, 80),
+              padding: const EdgeInsets.fromLTRB(20, 80, 20, 80),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -95,12 +98,10 @@ class ProductDetailPage extends StatelessWidget {
                       child: Hero(
                         tag: 'product-${product.id}',
                         child: AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Image.network(
-                            product.image,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
+                            aspectRatio: 16 / 9,
+                            child: product.image.startsWith('http')
+                                ? Image.network(product.image)
+                                : Image.file(File(product.image))),
                       ),
                     ),
                   ),

@@ -34,13 +34,16 @@ class ProductController extends GetxController {
   }
 
   Future<void> fetchProductList() async {
-    try {
-      var products = await ApiService.fetchProducts();
-      productList.assignAll(products);
-        } catch (e) {
-      Get.snackbar('Error', e.toString());
-    }
+  try {
+    var apiProducts = await ApiService.fetchProducts();
+    var ids = productList.map((p) => p.id).toSet();
+    var newItems = apiProducts.where((p) => !ids.contains(p.id)).toList();
+    productList.addAll(newItems);
+  } catch (e) {
+    Get.snackbar('Error', e.toString());
   }
+}
+
   
   // Added a method that can be used by the RefreshIndicator
   Future<void> fetchProducts() async {
